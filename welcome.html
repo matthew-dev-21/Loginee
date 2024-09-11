@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+</head>
+<body>
+  <h1 id="welcome-message">Welcome!</h1>
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+
+  <!-- Your Firebase Config -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBuZxhr8sw_t7CZpDqmPNrO7Mcr8rjjOEI",
+      authDomain: "webdev-1e590.firebaseapp.com",
+      projectId: "webdev-1e590",
+      storageBucket: "webdev-1e590.appspot.com",
+      messagingSenderId: "118488670732",
+      appId: "1:118488670732:web:b6bbed2caf7520e57d4429",
+      measurementId: "G-S88NV6X3TF",
+      databaseURL: "https://webdev-1e590-default-rtdb.firebaseio.com"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Get the current user and display their email
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        document.getElementById('welcome-message').textContent = `Welcome, ${user.email}!`;
+      } else {
+        window.location.href = 'index.html'; // Redirect to login page if not logged in
+      }
+    });
+  </script>
+</body>
+</html>
